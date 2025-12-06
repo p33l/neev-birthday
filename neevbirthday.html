@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Happy Birthday Neev ✨💌</title>
+
+<!-- Fonts: Great Vibes (cursive) for headings, Poppins for body -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg1: #0b1020;
+    --bg2: #2b0659;
+    --accent: #9b59ff;
+    --neon: #6ef0ff;
+    --card: rgba(255,255,255,0.04);
+  }
+
+  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+  body{
+    background: radial-gradient(1200px 700px at 10% 10%, rgba(107,44,214,0.18), transparent 8%),
+                radial-gradient(1000px 600px at 90% 90%, rgba(106,58,255,0.12), transparent 8%),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+    color: #fff;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    padding:40px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  /* subtle stars / particles */
+  .stars {position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.9;}
+  .star{position:absolute;background:radial-gradient(circle,#ffffff 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 60%);border-radius:50%;}
+
+  /* container that looks like a love-letter/card */
+  .card-wrap{
+    position:relative;
+    z-index:2;
+    width:min(900px,96%);
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:28px;
+    align-items:start;
+  }
+
+  /* left: message */
+  .letter{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:18px;
+    padding:34px;
+    box-shadow: 0 10px 40px rgba(16,8,40,0.6), 0 0 30px rgba(123,58,255,0.06) inset;
+    border: 1px solid rgba(255,255,255,0.04);
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* neon paper edge */
+  .letter::before{
+    content:"";
+    position:absolute;inset:0;
+    pointer-events:none;
+    box-shadow: 0 0 40px rgba(123,58,255,0.06) inset;
+    border-radius:18px;
+  }
+
+  h1{
+    font-family:"Great Vibes", serif;
+    font-size:46px;
+    margin:0 0 10px 0;
+    color: linear-gradient(90deg,#ffe0f7,#ffd1f0); /* fallback */
+    text-shadow: 0 6px 30px rgba(155,89,255,0.15);
+  }
+  .subtitle{
+    font-size:14px;
+    color: #dcd6ff;
+    margin-bottom:18px;
+    opacity:0.9;
+  }
+
+  .message{
+    font-size:18px;
+    line-height:1.8;
+    color: #f6f6ff;
+    margin-top:6px;
+    white-space:pre-wrap;
+  }
+
+  /* right: slideshow column (polaroid stack + neon border) */
+  .gallery {
+    width:420px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    align-items:center;
+  }
+
+  .polaroid {
+    width:360px;
+    height:260px;
+    border-radius:12px;
+    background:var(--card);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px;
+    box-shadow: 0 18px 40px rgba(8,6,18,0.6), 0 0 20px rgba(107,58,255,0.06);
+    border: 2px solid rgba(110,240,255,0.06);
+    position:relative;
+    overflow:hidden;
+  }
+
+  .polaroid img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:8px;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    transform-origin:center;
+    filter: drop-shadow(0 12px 40px rgba(0,0,0,0.5));
+  }
+
+  .polaroid .neon-frame{
+    position:absolute;inset:6px;border-radius:10px;
+    pointer-events:none;
+    box-shadow: 0 0 30px rgba(123,58,255,0.12), 0 0 60px rgba(110,240,255,0.03);
+    border: 1px solid rgba(110,240,255,0.05);
+    mix-blend-mode:screen;
+  }
+
+  /* small thumbnails row */
+  .thumbs{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .thumb{
+    width:68px;height:68px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid rgba(255,255,255,0.04);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .thumb:hover{transform:scale(1.06);box-shadow:0 10px 30px rgba(123,58,255,0.12)}
+
+  /* polaroid tilt effect for active */
+  .polaroid.active img{transform:scale(1.04) rotate(-0.6deg);}
+  .polaroid.next img{transform:scale(0.98) rotate(0.6deg);filter:grayscale(0.05) contrast(0.98);}
+
+  /* responsive */
+  @media (max-width:980px){
+    .card-wrap{grid-template-columns:1fr; gap:18px;}
+    .gallery{width:100%}
+    .polaroid{width:92%;height:240px}
+  }
+</style>
+</head>
+<body>
+
+<!-- stars layer (dynamically filled by JS) -->
+<div class="stars" aria-hidden="true"></div>
+
+<main class="card-wrap" role="main" aria-labelledby="title">
+  <section class="letter" aria-labelledby="title">
+    <h1 id="title">Happy Birthday Neev 💌</h1>
+    <div class="subtitle">A little neon galaxy love-note from Pal ✨</div>
+
+    <div class="message" id="message">
+Happy Birthday Neev! I love you to the moon and back! Congrats on turning 18 — you're another year wiser and <em>legal</em> from now on! Hehe have fun with the legal card lol, explore your options properly!
+
+And god, Neev, I really have to say this — I really love you. You're everything to me, my love. As much as you wish I could be there physically to meet you and wish you, I wish I was there too.
+
+Nevertheless, when we move in together one day, we’ll definitely catch up on all these missing birthdays. Happy 18th, my love — you make my world so much brighter just by being in it!
+
+I hope this year brings you everything you desire and immense happiness. I love you, my boy. 💗
+    </div>
+  </section>
+
+  <aside class="gallery" aria-label="Photos">
+    <div class="polaroid active" id="polaroid-main">
+      <img src="photo1.jpg" alt="Neev and Pal photo 1" id="main-photo"/>
+      <div class="neon-frame"></div>
+    </div>
+
+    <div class="thumbs" role="list">
+      <div class="thumb" data-src="photo1.jpg" role="listitem"><img src="photo1.jpg" alt="photo1 thumbnail"></div>
+      <div class="thumb" data-src="photo2.jpg" role="listitem"><img src="photo2.jpg" alt="photo2 thumbnail"></div>
+      <div class="thumb" data-src="photo3.jpg" role="listitem"><img src="photo3.jpg" alt="photo3 thumbnail"></div>
+      <div class="thumb" data-src="photo4.jpg" role="listitem"><img src="photo4.jpg" alt="photo4 thumbnail"></div>
+      <div class="thumb" data-src="photo5.jpg" role="listitem"><img src="photo5.jpg" alt="photo5 thumbnail"></div>
+      <div class="thumb" data-src="photo6.jpg" role="listitem"><img src="photo6.jpg" alt="photo6 thumbnail"></div>
+    </div>
+  </aside>
+</main>
+
+<script>
+/* ---------- small starfield generator ---------- */
+(function makeStars(){
+  const container = document.querySelector('.stars');
+  const count = 40;
+  for(let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const size = Math.random()*2.4 + 0.6;
+    s.style.width = `${size}px`;
+    s.style.height = `${size}px`;
+    s.style.left = Math.random()*100 + '%';
+    s.style.top = Math.random()*100 + '%';
+    s.style.opacity = Math.random()*0.9 + 0.2;
+    s.style.transform = `scale(${Math.random()+0.2})`;
+    container.appendChild(s);
+  }
+})();
+
+/* ---------- thumbs & main photo logic (click to swap, auto-rotate) ---------- */
+const thumbs = Array.from(document.querySelectorAll('.thumb'));
+const mainImg = document.getElementById('main-photo');
+const polaroid = document.getElementById('polaroid-main');
+
+let current = 0;
+const srcs = ['photo1.jpg','photo2.jpg','photo3.jpg','photo4.jpg','photo5.jpg'];
+
+// helper to set active thumb style
+function setActive(index){
+  thumbs.forEach((t,i)=> t.classList.toggle('active', i===index));
+  // visual tilt classes
+  polaroid.classList.remove('next');
+  polaroid.classList.remove('active');
+  void polaroid.offsetWidth;
+  polaroid.classList.add('active');
+  mainImg.src = srcs[index];
+  current = index;
+}
+
+// click handlers
+thumbs.forEach((t,i)=>{
+  t.addEventListener('click', ()=>{
+    setActive(i);
+  });
+});
+
+// keyboard arrow support
+document.addEventListener('keydown', (e)=>{
+  if(e.key === 'ArrowRight') setActive((current+1)%srcs.length);
+  if(e.key === 'ArrowLeft') setActive((current-1+srcs.length)%srcs.length);
+});
+
+// auto-rotate every 3.5s, but pause on hover
+let rotating = true;
+let rotateTimer = setInterval(()=>{ if(rotating) setActive((current+1)%srcs.length); }, 3500);
+
+document.querySelector('.gallery').addEventListener('mouseenter', ()=> rotating=false);
+document.querySelector('.gallery').addEventListener('mouseleave', ()=> rotating=true);
+
+/* init */
+setActive(0);
+
+/* small accessibility tweak: focusable thumbs */
+thumbs.forEach(t=> t.tabIndex = 0);
+
+</script>
+</body>
+</html>
