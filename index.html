@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Neev 🎉</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #0e0f2e, #1b1e4b);
+        color: white;
+        text-align: center;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: 48px;
+        margin-top: 40px;
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { text-shadow: 0 0 10px #ff9bd6, 0 0 20px #ff9bd6; }
+        to   { text-shadow: 0 0 25px #ff48b9, 0 0 35px #ff48b9; }
+    }
+
+    .slideshow {
+        margin: 40px auto;
+        width: 85%;
+        max-width: 600px;
+        height: 380px;
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 0 20px rgba(255, 150, 200, 0.4);
+    }
+
+    .slideshow img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .msg {
+        font-size: 22px;
+        padding: 20px 30px;
+        line-height: 1.7;
+        max-width: 750px;
+        margin: auto;
+    }
+
+    .hearts span {
+        position: fixed;
+        bottom: -10px;
+        color: #ff7ac4;
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+        opacity: 0.6;
+    }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0); opacity: 0.6; }
+        100% { transform: translateY(-800px); opacity: 0; }
+    }
+
+    @media (max-width: 600px) {
+        h1 { font-size: 36px; }
+        .msg { font-size: 18px; }
+        .slideshow { height: 250px; }
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Happy Birthday Neev 💗🎉</h1>
+
+<div class="slideshow" id="slideshow"></div>
+
+<div class="msg">
+    Happy Birthday Neev! 💗<br><br>
+    I love you to the moon and back! Congrats on turning 18 — you're another year wiser and <i>legal</i> from now on 😭💀💗  
+    Have fun with the legal card hehe, explore your options properly!<br><br>
+
+    And god, Neev, I really have to say this… I love you so much.  
+    You're everything to me, my love.  
+    As much as you wish I could be there physically to meet you and wish you,  
+    I wish I was there too.<br><br>
+
+    Nevertheless, when we move in together one day,  
+    we’ll definitely catch up on all these missing birthdays.  
+    Happy 18th my love — you make my world so much brighter just by being in it.<br><br>
+
+    I hope this year brings you everything you desire and so much happiness.  
+    I love you, my boy. 💗✨
+</div>
+
+<script>
+    // Hearts animation
+    function createHeart() {
+        const heart = document.createElement("span");
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 500);
+
+    // Slideshow
+    const slideshow = document.getElementById("slideshow");
+    const imageCount = 6; // number of images
+    let images = [];
+
+    for (let i = 1; i <= imageCount; i++) {
+        const img = document.createElement("img");
+        img.src = `photo${i}.jpg`; // your images: photo1.jpg, photo2.jpg, etc.
+        slideshow.appendChild(img);
+        images.push(img);
+    }
+
+    let current = 0;
+    function showNext() {
+        images.forEach((img, index) => img.style.opacity = (index === current ? 1 : 0));
+        current = (current + 1) % images.length;
+    }
+
+    showNext();
+    setInterval(showNext, 6000); // change every 6 seconds
+</script>
+
+</body>
+</html>
